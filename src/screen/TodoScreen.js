@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { Icon, IconButton } from "react-native-paper";
 
 const dummyData = [
   {
@@ -20,26 +21,38 @@ const dummyData = [
 ];
 
 const TodoScreen = () => {
+  const [todo, setTodo] = useState("");
+  const [todoList, setTodoList] = useState([]);
+  const handleAddTodo = () => {
+    setTodoList([...todoList, {id: Date.now().toString(), title: todo}]);
+    setTodo("");
+  };
+
   const renderTodos = ({ item, index }) => {
     return (
       <View
         style={{
           backgroundColor: "#1e90ff",
           borderRadius: 6,
-          paddingHorizontal: 6,
+          paddingHorizontal: 12,
           paddingVertical: 12,
           marginBottom: 12,
+          flexDirection: "row",
+          alignItems: "center",
         }}
       >
-        <Text style={{ color: "#fff", fontSize: 20, fontWeight: "800" }}>
+        <Text
+          style={{ color: "#fff", fontSize: 20, fontWeight: "800", flex: 1 }}
+        >
           {item.title}
         </Text>
+        <IconButton icon="pencil" iconColor="#fff" />
+        <IconButton icon="trash-can" iconColor="#fff" />
       </View>
     );
   };
   return (
     <View style={{ marginTop: 65, marginHorizontal: 16 }}>
-      <Text>TodoScreen</Text>
       <TextInput
         style={{
           borderWidth: 2,
@@ -49,6 +62,8 @@ const TodoScreen = () => {
           paddingHorizontal: 16,
         }}
         placeholder="Add a task"
+        value={todo}
+        onChangeText={(userText) => setTodo(userText)}
       />
       <TouchableOpacity
         style={{
@@ -58,13 +73,14 @@ const TodoScreen = () => {
           marginVertical: 34,
           alignItems: "center",
         }}
+        onPress={() => handleAddTodo()}
       >
         <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
           Add
         </Text>
       </TouchableOpacity>
 
-      <FlatList data={dummyData} renderItem={renderTodos} />
+      <FlatList data={todoList} renderItem={renderTodos} />
     </View>
   );
 };
