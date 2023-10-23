@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { Icon, IconButton } from "react-native-paper";
+import { IconButton } from "react-native-paper";
 
 const dummyData = [
   {
@@ -28,6 +28,11 @@ const TodoScreen = () => {
     setTodo("");
   };
 
+  const handleDeleteTodo = (id) => {
+    const updatedTodoList = todoList.filter((todo)=> todo.id !== id);
+    setTodoList(updatedTodoList);
+  }
+
   const renderTodos = ({ item, index }) => {
     return (
       <View
@@ -47,7 +52,7 @@ const TodoScreen = () => {
           {item.title}
         </Text>
         <IconButton icon="pencil" iconColor="#fff" />
-        <IconButton icon="trash-can" iconColor="#fff" />
+        <IconButton icon="trash-can" iconColor="#fff" onPress={()=>handleDeleteTodo(item.id)}/>
       </View>
     );
   };
@@ -58,7 +63,7 @@ const TodoScreen = () => {
           borderWidth: 2,
           borderColor: "#1e90ff",
           borderRadius: 6,
-          paddingVertical: 12,
+          paddingVertical: 8,
           paddingHorizontal: 16,
         }}
         placeholder="Add a task"
