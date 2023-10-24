@@ -14,10 +14,6 @@ const Fallback = () => {
 					paddingVertical: 12,
 					paddingHorizontal: 12,
 					borderRadius: 6,
-					// shadowColor: "#000",
-					// shadowOffset: { width: 0, height: 2 },
-					// shadowOpacity: 0.8,
-					// shadowRadius: 3,
                     elevation: 4,
 					marginTop: 20,
 				}}
