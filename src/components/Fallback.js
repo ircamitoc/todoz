@@ -3,21 +3,22 @@ import React from "react";
 
 const Fallback = () => {
 	return (
-		<View style={{ alignItems: "center" }}>
+		<View style={{ alignItems: "center", marginTop: 70 }}>
 			<Image
 				source={require("todoz/assets/Add-tasks-bro.png")}
 				style={{ height: 300, width: 300 }}
 			/>
 			<View
 				style={{
-					backgroundColor: "#000",
+					backgroundColor: "#FF725E",
 					paddingVertical: 12,
 					paddingHorizontal: 12,
 					borderRadius: 6,
-					shadowColor: "#000",
-					shadowOffset: { width: 0, height: 2 },
-					shadowOpacity: 0.8,
-					shadowRadius: 3,
+					// shadowColor: "#000",
+					// shadowOffset: { width: 0, height: 2 },
+					// shadowOpacity: 0.8,
+					// shadowRadius: 3,
+                    elevation: 4,
 					marginTop: 20,
 				}}
 			>
